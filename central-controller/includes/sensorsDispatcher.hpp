@@ -20,18 +20,6 @@ namespace cc::sensors
 
         const Sensor& getSensor(byte id) const;
 
-        #pragma region Dispose
-        /**
-         * @brief 
-         * Disposes of the instantiated sensors.
-         */
-        inline void dispose()
-        {
-            for (const auto& pair : _sensorsMap)
-                delete pair.second;
-        }
-        #pragma endregion
-
     private:
         SensorsDispatcher();
 
@@ -41,7 +29,7 @@ namespace cc::sensors
 
         static std::map<
             byte, 
-            Sensor*
+            std::unique_ptr<Sensor>
         > _sensorsMap;
     };
 }

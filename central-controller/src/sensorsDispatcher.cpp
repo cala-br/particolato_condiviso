@@ -1,8 +1,9 @@
 #include "includes/sensorsDispatcher.hpp"
 
 
-namespace cc::sensors
-{
+namespace cc {
+namespace sensors {
+    
     #pragma region Static fields
 
     std::unique_ptr<
@@ -11,7 +12,7 @@ namespace cc::sensors
    
     std::map<
         byte, 
-        Sensor*
+        std::unique_ptr<Sensor>
     > _sensorsMap = {};
 
     #pragma endregion
@@ -56,4 +57,4 @@ namespace cc::sensors
         return *_sensorsMap[id];
     }
     #pragma endregion
-}
+}}
