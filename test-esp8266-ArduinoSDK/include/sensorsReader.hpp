@@ -12,8 +12,9 @@ namespace channels {
 		SensorsReader(const SensorsReader&) = delete;
 		SensorsReader(SensorsReader&&)		= delete;
 
+
 	private:
-		SensorReader();
+		
 	};
 
 }}

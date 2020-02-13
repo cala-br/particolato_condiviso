@@ -9,7 +9,7 @@ namespace sensors {
 
     struct SensorData
     {
-        const byte        id;
+        byte              id;
         std::vector<byte> data;
     };
 
