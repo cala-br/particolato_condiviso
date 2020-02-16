@@ -10,23 +10,33 @@
 namespace cc {
 namespace sensors {
 
-    template <class ...SensorTypes>
     class SensorsManager
     {
     public:
         SensorsManager(const SensorsManager&) = delete;
         SensorsManager(SensorsManager&&)      = delete;
 
-        //const Sensor& getSensor(byte id) const;
-
-        SensorsManager(SensorTypes... sensorTypes) 
+        SensorsManager(
+            std::vector<std::shared_ptr<Sensor>> sensors
+        )
         {
-            
+            for (auto& sensor : sensors)
+                _sensors.insert({ sensor->getId(), sensor });
         };
 
+        const Sensor& getSensor(byte id) {
+            return *_sensors[id];
+        };
+
+        const Sensor& operator[](byte id) {
+            return getSensor(id);
+        }
+
     private:
-        std::vector<
-            std::unique_ptr<Sensor>> _sensors;
+        std::map<
+            byte,
+            std::shared_ptr<Sensor>
+        > _sensors;
     };
 }}
 

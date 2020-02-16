@@ -1,5 +1,5 @@
-#ifndef SERIAL_CHANNEL_H_
-#define SERIAL_CHANNEL_H_
+#ifndef MOCK_CHANNEL_H_
+#define MOCK_CHANNEL_H_
 
 #include "channel.hpp"
 #include <Arduino.h>
@@ -29,4 +29,4 @@ namespace channels {
 }}
 
 
-#endif // !SERIAL_CHANNEL_H_
+#endif // !MOCK_CHANNEL_H_

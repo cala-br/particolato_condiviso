@@ -17,9 +17,6 @@ namespace sensors {
     class Sensor
     {
     public:
-        Sensor(const Sensor&)  = delete;
-        Sensor(Sensor&&)       = delete;
-
         #pragma region Decode - virtual
         /// <summary> 
         /// Takes care of decoding the raw data, passed as 
@@ -28,8 +25,8 @@ namespace sensors {
         /// <param name="rawData"> The data read from the sensor </param>
         /// <param name="result"> The result, must be set by the method </param>
         virtual void decode(
-            SensorData& rawData,
-            string&     result
+            const SensorData& rawData,
+            string&           result
         ) const = 0;
         #pragma endregion
 
