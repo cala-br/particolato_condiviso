@@ -1,8 +1,8 @@
 #include <Arduino.h>
-#include "sensorsManager.hpp"
 #include "sensorsReader.hpp"
+#include "mockChannel.hpp"
 
-using cc::sensors::SensorsManager;
+using namespace cc::channels;
 
 
 void setup() 
@@ -12,5 +12,13 @@ void setup()
 
 void loop() 
 {
+    static SensorsReader reader(
+    {
+        std::shared_ptr<MockChannel>()
+    });
     
+    const auto& sData = 
+        reader[0]->read();
+
+
 }

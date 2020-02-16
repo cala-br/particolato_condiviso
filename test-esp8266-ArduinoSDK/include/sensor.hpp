@@ -63,16 +63,16 @@ namespace sensors {
         /// <param name="id"> The sensor's id. </param>
         /// <param name="name"> The sensor's name. </param>
         Sensor(
-            const byte    id,
-            const string& name
+            const byte   id,
+            const string name
         ) :
             _id  (id),
             _name(name) 
         {}
         #pragma endregion
 
-        const byte    _id;
-        const string& _name;
+        const byte   _id;
+        const string _name;
     };
 }}
 

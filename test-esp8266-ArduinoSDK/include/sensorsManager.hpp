@@ -10,19 +10,23 @@
 namespace cc {
 namespace sensors {
 
+    template <class ...SensorTypes>
     class SensorsManager
     {
     public:
         SensorsManager(const SensorsManager&) = delete;
         SensorsManager(SensorsManager&&)      = delete;
 
-        static const 
-            SensorsManager& getInstance();
+        //const Sensor& getSensor(byte id) const;
 
-        const Sensor& getSensor(byte id) const;
+        SensorsManager(SensorTypes... sensorTypes) 
+        {
+            
+        };
 
     private:
-        SensorsManager() {};
+        std::vector<
+            std::unique_ptr<Sensor>> _sensors;
     };
 }}
 
