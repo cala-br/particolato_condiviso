@@ -3,6 +3,7 @@
 
 #include "channel.hpp"
 #include <memory>
+#include <thread>
 
 namespace cc {
 namespace channels {
@@ -26,18 +27,25 @@ namespace channels {
 		{}
 		#pragma endregion
 
-		#pragma region Get sensor
+
+		using SensorDataReceivedHandler = 
+			std::function<void(const SensorData&)>;
+
 		/// <summary>
-		/// Access the channel stored at the given index.
+		/// Data received event.
 		/// </summary>
-		inline std::shared_ptr<Channel> operator [](byte index){
-			return _channels[index];
-		}
-		#pragma endregion
+		SensorDataReceivedHandler dataReceived;
 
 	private:
+
 		std::vector<
 			std::shared_ptr<Channel>> _channels;
+
+		/// <summary>
+		/// A thread will be executed for each channel.
+		/// </summary>
+		std::vector<
+			std::unique_ptr<std::thread>> _readingThreads;
 	};
 
 }}

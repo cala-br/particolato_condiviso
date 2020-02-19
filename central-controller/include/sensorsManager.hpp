@@ -17,18 +17,18 @@ namespace sensors {
         SensorsManager(SensorsManager&&)      = delete;
 
         SensorsManager(
-            std::vector<std::shared_ptr<Sensor>> sensors
-        )
-        {
+            std::vector<
+                std::shared_ptr<Sensor>> sensors
+        ) {
             for (auto& sensor : sensors)
                 _sensors.insert({ sensor->getId(), sensor });
         };
 
-        const Sensor& getSensor(byte id) {
+        inline const Sensor& getSensor(byte id) {
             return *_sensors[id];
         };
 
-        const Sensor& operator[](byte id) {
+        inline const Sensor& operator[](byte id) {
             return getSensor(id);
         }
 

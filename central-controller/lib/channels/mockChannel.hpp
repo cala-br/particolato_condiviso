@@ -15,6 +15,8 @@ namespace channels {
 
 		const SensorData& read()
 		{
+			delay(1000);
+
 			_currentData.id = 1;
 			auto& cd = _currentData.data;
 
