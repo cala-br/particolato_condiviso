@@ -1,0 +1,8 @@
+#ifndef SENSORS_H_
+#define SENSORS_H_
+
+#include <sensorsManager.hpp>
+#include <sensorsReader.hpp>
+#include <mockSensor.hpp>
+
+#endif // !SENSORS_H_

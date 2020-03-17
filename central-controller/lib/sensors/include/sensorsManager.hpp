@@ -1,8 +1,8 @@
 #ifndef SENSORS_MANAGER_H_
 #define SENSORS_MANAGER_H_
 
-#include "shared.hpp"
-#include "sensor.hpp"
+#include <shared.hpp>
+#include <sensor.hpp>
 #include <map>
 #include <memory>
 
@@ -15,19 +15,20 @@ namespace sensors {
     public:
         SensorsManager(const SensorsManager&) = delete;
         SensorsManager(SensorsManager&&)      = delete;
-
         SensorsManager(
-            std::vector<
-                std::shared_ptr<Sensor>> sensors
-        ) {
-            for (auto& sensor : sensors)
-                _sensors.insert({ sensor->getId(), sensor });
-        };
+            std::vector<std::shared_ptr<Sensor>>&& sensors);
+        
 
+        /// <summary>
+        /// Returns the sensor with the specified id
+        /// </summary>
         inline const Sensor& getSensor(byte id) {
             return *_sensors[id];
-        };
+        }
 
+        /// <summary>
+        /// Calls getSensor(id)
+        /// </summary>
         inline const Sensor& operator[](byte id) {
             return getSensor(id);
         }

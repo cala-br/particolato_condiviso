@@ -1,7 +1,7 @@
 #ifndef SENSORS_READER_H_
 #define SENSORS_READER_H_
 
-#include "channel.hpp"
+#include <channel.hpp>
 #include <memory>
 #include <thread>
 
@@ -13,19 +13,10 @@ namespace channels {
 	public:
 		SensorsReader(const SensorsReader&) = delete;
 		SensorsReader(SensorsReader&&)		= delete;
-
-		#pragma region ctor
-		/// <summary>
-		/// Creates a new SensorsReader with the given list 
-		/// of channels.
-		/// </summary>
 		SensorsReader(
-			std::vector<
-				std::shared_ptr<Channel>> channels)
-			:
-			_channels(channels)
-		{}
-		#pragma endregion
+			std::vector<std::shared_ptr<Channel>>&& channels);
+
+		void start();
 
 
 		using SensorDataReceivedHandler = 
@@ -41,11 +32,17 @@ namespace channels {
 		std::vector<
 			std::shared_ptr<Channel>> _channels;
 
-		/// <summary>
-		/// A thread will be executed for each channel.
-		/// </summary>
+		// A thread will be started for each channel.
 		std::vector<
 			std::unique_ptr<std::thread>> _readingThreads;
+
+		// Friend is used in order to let the thread
+		// class access the handleChannel(...) method.
+		friend class std::thread;
+		static void handleChannel(
+			SensorsReader			 *reader,
+			std::shared_ptr<Channel>  channel
+		);
 	};
 
 }}

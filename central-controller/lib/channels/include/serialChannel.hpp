@@ -1,7 +1,7 @@
 #ifndef SERIAL_CHANNEL_H_
 #define SERIAL_CHANNEL_H_
 
-#include "channel.hpp"
+#include <channel.hpp>
 #include <Arduino.h>
 
 

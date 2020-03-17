@@ -1,8 +1,6 @@
 #include <Arduino.h>
-#include "sensorsReader.hpp"
-#include "sensorsManager.hpp"
-#include "channels"
-#include "sensors"
+#include <channels>
+#include <sensors>
 
 
 using namespace cc::channels;
@@ -20,7 +18,7 @@ static SensorsManager manager({
 
 void setup() 
 {
-    Serial.begin(115200);
+    Serial.begin(9600);
 
     reader.dataReceived = [](const SensorData& sData)
     {
@@ -31,6 +29,8 @@ void setup()
 
         Serial.println(res);
     };
+
+    reader.start();
 }
 
 void loop() 

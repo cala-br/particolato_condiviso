@@ -1,7 +1,7 @@
 #ifndef I2C_CHANNEL_H_
 #define I2C_CHANNEL_H_
 
-#include "channel.hpp"
+#include <channel.hpp>
 
 namespace cc {
 namespace channels {

@@ -1,7 +1,7 @@
 #ifndef SENSOR_H_
 #define SENSOR_H_
 
-#include "shared.hpp"
+#include <shared.hpp>
 
 
 namespace cc {
@@ -17,7 +17,6 @@ namespace sensors {
     class Sensor
     {
     public:
-        #pragma region Decode - virtual
         /// <summary> 
         /// Takes care of decoding the raw data, passed as 
         /// a byte vector, and formatting it as a string 
@@ -28,33 +27,26 @@ namespace sensors {
             const SensorData& rawData,
             string&           result
         ) const = 0;
-        #pragma endregion
 
-        #pragma region Get id
+
         /// <summary>
         /// Returns the sensor's ID.
         /// </summary>
-        inline byte getId() const
-        {
+        inline byte getId() const {
             return this->_id;
         }
-        #pragma endregion
 
-        #pragma region Get name
+
         /// <summary>
         /// Returns the sensor's name.
         /// </summary>
-        inline const string& getName() const
-        {
+        inline const string& getName() const {
             return this->_name;
         }
-        #pragma endregion
 
     protected:
-        #pragma region ctor
         /// <summary>
         /// Creates a new Sensor.
-        /// This constructor is protected.
         /// </summary>
         ///
         /// <param name="id"> The sensor's id. </param>
@@ -66,7 +58,6 @@ namespace sensors {
             _id  (id),
             _name(name) 
         {}
-        #pragma endregion
 
         const byte   _id;
         const string _name;

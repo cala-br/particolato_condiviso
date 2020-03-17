@@ -1,7 +1,7 @@
 #ifndef MOCK_SENSOR_H_
 #define MOCK_SENSOR_H_
 
-#include "sensor.hpp"
+#include <sensor.hpp>
 
 
 namespace cc {
