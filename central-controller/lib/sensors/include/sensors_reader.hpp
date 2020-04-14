@@ -1,5 +1,5 @@
-#ifndef SENSORS_READER_H_
-#define SENSORS_READER_H_
+#ifndef SENSORS_READER_HPP_
+#define SENSORS_READER_HPP_
 
 #include <channel.hpp>
 #include <memory>
@@ -48,4 +48,4 @@ namespace channels {
 }}
 
 
-#endif // !SENSORS_READER_H_
+#endif // !SENSORS_READER_HPP_

@@ -1,5 +1,5 @@
-#ifndef I2C_CHANNEL_H_
-#define I2C_CHANNEL_H_
+#ifndef I2C_CHANNEL_HPP_
+#define I2C_CHANNEL_HPP_
 
 #include <channel.hpp>
 
@@ -18,4 +18,4 @@ namespace channels {
 
 }}
 
-#endif // !I2C_CHANNEL_H_
+#endif // !I2C_CHANNEL_HPP_

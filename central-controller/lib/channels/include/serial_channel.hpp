@@ -1,5 +1,5 @@
-#ifndef SERIAL_CHANNEL_H_
-#define SERIAL_CHANNEL_H_
+#ifndef SERIAL_CHANNEL_HPP_
+#define SERIAL_CHANNEL_HPP_
 
 #include <channel.hpp>
 #include <Arduino.h>
@@ -32,4 +32,4 @@ namespace channels {
 }}
 
 
-#endif // !SERIAL_CHANNEL_H_
+#endif // !SERIAL_CHANNEL_HPP_

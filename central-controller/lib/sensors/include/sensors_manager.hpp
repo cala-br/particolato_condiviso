@@ -1,5 +1,5 @@
-#ifndef SENSORS_MANAGER_H_
-#define SENSORS_MANAGER_H_
+#ifndef SENSORS_MANAGER_HPP_
+#define SENSORS_MANAGER_HPP_
 
 #include <shared.hpp>
 #include <sensor.hpp>
@@ -41,4 +41,4 @@ namespace sensors {
     };
 }}
 
-#endif // !SENSORS_DISPATCHER_H_
+#endif // !SENSORS_DISPATCHER_HPP_

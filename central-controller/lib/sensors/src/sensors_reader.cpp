@@ -1,4 +1,4 @@
-#include <sensorsReader.hpp>
+#include <sensors_reader.hpp>
 
 namespace cc {
 namespace channels {

@@ -12,7 +12,8 @@ static SensorsReader reader({
 });
 
 static SensorsManager manager({
-    cc::make_shared<MockSensor>()
+    cc::make_shared<MockSensor>(),
+    cc::make_shared<Bme280>()
 });
 
 

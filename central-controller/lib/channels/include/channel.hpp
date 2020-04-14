@@ -1,5 +1,5 @@
-#ifndef CHANNEL_H_
-#define CHANNEL_H_
+#ifndef CHANNEL_HPP_
+#define CHANNEL_HPP_
 
 #include <sensor.hpp>
 
@@ -35,4 +35,4 @@ namespace channels {
 }}
 
 
-#endif // !CHANNEL_H_
+#endif // !CHANNEL_HPP_

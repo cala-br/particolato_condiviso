@@ -1,5 +1,5 @@
-#ifndef SENSOR_H_
-#define SENSOR_H_
+#ifndef SENSOR_HPP_
+#define SENSOR_HPP_
 
 #include <shared.hpp>
 
@@ -64,4 +64,4 @@ namespace sensors {
     };
 }}
 
-#endif // !SENSOR_H_
+#endif // !SENSOR_HPP_

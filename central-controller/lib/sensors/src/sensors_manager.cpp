@@ -1,4 +1,4 @@
-#include <sensorsManager.hpp>
+#include <sensors_manager.hpp>
 
 namespace cc {
 namespace sensors {

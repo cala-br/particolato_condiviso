@@ -1,5 +1,5 @@
-#ifndef MOCK_CHANNEL_H_
-#define MOCK_CHANNEL_H_
+#ifndef MOCK_CHANNEL_HPP_
+#define MOCK_CHANNEL_HPP_
 
 #include <channel.hpp>
 #include <Arduino.h>
@@ -31,4 +31,4 @@ namespace channels {
 }}
 
 
-#endif // !MOCK_CHANNEL_H_
+#endif // !MOCK_CHANNEL_HPP_

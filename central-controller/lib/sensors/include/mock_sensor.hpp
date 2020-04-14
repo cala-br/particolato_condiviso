@@ -1,5 +1,5 @@
-#ifndef MOCK_SENSOR_H_
-#define MOCK_SENSOR_H_
+#ifndef MOCK_SENSOR_HPP_
+#define MOCK_SENSOR_HPP_
 
 #include <sensor.hpp>
 
@@ -25,4 +25,4 @@ namespace sensors {
 }}
 
 
-#endif // !MOCK_SENSOR_H_
+#endif // !MOCK_SENSOR_HPP_

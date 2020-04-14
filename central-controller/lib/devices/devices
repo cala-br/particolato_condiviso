@@ -1,0 +1,6 @@
+#ifndef DEVICES_
+#define DEVICES_
+
+#include <i2c_device.hpp>
+
+#endif // !DEVICES_

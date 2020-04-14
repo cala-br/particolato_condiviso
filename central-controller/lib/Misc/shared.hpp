@@ -1,5 +1,5 @@
-#ifndef SHARED_H_
-#define SHARED_H_
+#ifndef SHARED_HPP_
+#define SHARED_HPP_
 
 #include <Arduino.h>
 #include <vector>
@@ -26,4 +26,4 @@ namespace cc
     }
 }
 
-#endif // !SHARED_H_
+#endif // !SHARED_HPP_
