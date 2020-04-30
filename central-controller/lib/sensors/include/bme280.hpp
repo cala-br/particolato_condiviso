@@ -1,32 +1,20 @@
 #ifndef BME280_HPP_
 #define BME280_HPP_
 
-#include <sensor.hpp>
-#include <i2c_device.hpp>
+#include <comm_info.hpp>
 
 
 namespace cc {
 namespace sensors {
 
-	class Bme280 : 
-		public Sensor, 
-		public devices::I2CDevice
-	{ 
+	class Bme280 : public I2CSensor
+	{
 	public:
-		Bme280() : 
-			Sensor(60, "bme280"),
-			I2CDevice(1, 0x1) 
-		{}
+		Bme280();
 
-		void decode(
-			const SensorData& rawData,
-			string&			  result
-		) const
-		{
-			result = "decoded";
-		};
+		SensorData read();
+		string	   decode(const SensorData&);
 	};
-
 }}
 
 

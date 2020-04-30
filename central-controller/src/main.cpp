@@ -7,12 +7,7 @@ using namespace cc::channels;
 using namespace cc::sensors;
 
 
-static SensorsReader reader({
-    cc::make_shared<MockChannel>()
-});
-
-static SensorsManager manager({
-    cc::make_shared<MockSensor>(),
+I2CChannel i2c({
     cc::make_shared<Bme280>()
 });
 
@@ -20,21 +15,9 @@ static SensorsManager manager({
 void setup() 
 {
     Serial.begin(9600);
-
-    reader.dataReceived = [](const SensorData& sData)
-    {
-        cc::string res;
-        manager
-            .getSensor(sData.id)
-            .decode(sData, res);
-
-        Serial.println(res);
-    };
-
-    reader.start();
 }
 
 void loop() 
 {
-
+    Serial.println(i2c.readNext());
 }

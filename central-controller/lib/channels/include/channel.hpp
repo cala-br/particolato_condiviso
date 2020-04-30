@@ -7,30 +7,40 @@
 namespace cc {
 namespace channels {
 
-	using sensors::SensorData;
-
+	template <typename ST>
 	class Channel
 	{
 	public:
-		Channel(const Channel&) = delete;
-		Channel(Channel&&)      = delete;
-
-		virtual const SensorData& read() = 0;
-
-		
-		/// <summary>
-		/// Returns the data from the last reading.
-		/// </summary>
-		inline const SensorData& getCurrentData() {
-			return this->_currentData;
-		}
-		
+		virtual string readNext() = 0;
 
 	protected:
-		Channel() {};
+		Channel(std::vector<std::shared_ptr<ST>> sensors);
 
-		SensorData _currentData;
+		std::vector<
+			std::shared_ptr<ST>
+		> _sensors;
+
+		std::shared_ptr<ST> getNext();
+
+	public:
+		Channel(const Channel&&) = delete;
+		Channel(Channel&)		 = delete;
 	};
+
+
+	template <typename ST>
+	Channel<ST>::Channel(std::vector<std::shared_ptr<ST>> sensors)
+		:
+		_sensors(sensors)
+	{}
+
+
+	template <typename ST>
+	std::shared_ptr<ST> Channel<ST>::getNext()
+	{
+		static byte i = -1;
+		return _sensors[++i %= _sensors.size()];
+	}
 
 }}
 

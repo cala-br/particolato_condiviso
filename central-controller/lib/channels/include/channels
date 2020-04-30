@@ -1,8 +1,6 @@
 #ifndef CHANNELS_
 #define CHANNELS_
 
-#include <mock_channel.hpp>
-#include <serial_channel.hpp>
 #include <i2c_channel.hpp>
 
 #endif // !CHANNELS_HPP_

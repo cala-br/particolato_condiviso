@@ -7,8 +7,10 @@
 
 namespace cc
 {
-    using string   = String;
-    using byte     = unsigned char;
+    using string = String;
+    using byte   = byte;
+    using word   = int16_t;
+    using dword  = int32_t;
 
 
     template <typename T, typename ...Args>
