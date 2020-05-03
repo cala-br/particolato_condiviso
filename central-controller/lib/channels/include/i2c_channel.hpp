@@ -8,10 +8,14 @@
 namespace cc {
 namespace channels {
 
-	class I2CChannel : public Channel<sensors::I2CSensor>
+	class I2CChannel : public Channel
 	{
 	public:
-		I2CChannel(std::vector<std::shared_ptr<sensors::I2CSensor>> sensors);
+		I2CChannel(
+			int delay,
+			int timeout,
+			std::vector<std::shared_ptr<sensors::Sensor>> sensors
+		);
 
 		string readNext();
 	};

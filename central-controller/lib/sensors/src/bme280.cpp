@@ -25,8 +25,10 @@ namespace sensors {
 	{
 		string res = "{ ";
 		
-		for (auto ch : rawData.data)
-			res += ch + ' ';
+		for (auto ch : rawData.data) {
+			res += ch;
+			res += ' ';
+		}
 
 		res += "}";
 		return res;

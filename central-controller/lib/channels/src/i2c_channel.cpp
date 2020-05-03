@@ -7,17 +7,21 @@ using namespace cc::sensors;
 namespace cc {
 namespace channels {
 
-	I2CChannel::I2CChannel(vector<shared_ptr<I2CSensor>> sensors)
-		:
-		Channel(sensors)
+	I2CChannel::I2CChannel(
+		int delay,
+		int timeout,
+		vector<shared_ptr<Sensor>> sensors
+	) :
+		Channel(delay, timeout, sensors)
 	{}
 
 
 	string I2CChannel::readNext()
 	{
-		auto sensor = this->getNext();
-		auto data   = sensor->read();
+		auto sensor = 
+			static_pointer_cast<I2CSensor>(this->getNext());
 
+		auto data = sensor->read();
 		return sensor->decode(data);
 	}
 
