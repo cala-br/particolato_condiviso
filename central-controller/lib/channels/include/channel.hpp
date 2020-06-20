@@ -2,37 +2,108 @@
 #define CHANNEL_HPP_
 
 #include <sensor.hpp>
+#include <functional>
+#include <type_traits>
 
 
 namespace cc {
 namespace channels {
 
-	class Channel
+	template <typename SensorType>
+	class Channel 
 	{
 	public:
 		virtual string readNext() = 0;
 
+		void addSensor	 (std::unique_ptr<SensorType>&& sensor);
+		void removeSensor(const byte id);
+
+		void initAll() const;
+
 	protected:
 		Channel(
-			int delay, 
-			int timeout, 
-			std::vector<std::shared_ptr<sensors::Sensor>> sensors
+			const int delay, 
+			const int timeout, 
+			std::vector<std::unique_ptr<SensorType>> sensors
 		);
 
-		std::shared_ptr<sensors::Sensor> getNext();
+		Channel(
+			const int delay,
+			const int timeout
+		) : Channel(delay, timeout, {}) {}
+
+
+		SensorType* getNext();
 
 
 		int _delay;
 		int _timeout;
 
 		std::vector<
-			std::shared_ptr<sensors::Sensor>
+			std::unique_ptr<SensorType>
 		> _sensors;
 
 	public:
 		Channel(const Channel&&) = delete;
 		Channel(Channel&)		 = delete;
 	};
+
+
+	template <typename SensorType>
+	Channel<SensorType>::Channel(
+		const int delay,
+		const int timeout,
+		std::vector<std::unique_ptr<SensorType>> sensors
+	) :
+		_delay(delay),
+		_timeout(timeout),
+		_sensors(move(sensors))
+	{
+		static_assert(
+			std::is_base_of<sensors::Sensor, SensorType>::value,
+			"`SensorType` must be derived from `Sensor`");
+	}
+
+
+	template <typename SensorType>
+	void Channel<SensorType>::addSensor(std::unique_ptr<SensorType>&& sensor)
+	{
+		_sensors.push_back(move(sensor));
+	}
+
+
+	template <typename SensorType>
+	void Channel<SensorType>::removeSensor(const byte id)
+	{
+		const auto predicate = [id](std::unique_ptr<SensorType>& sensor) {
+			return sensor->getId() == id;
+		};
+
+		auto el = find_if(
+			begin(_sensors),
+			end(_sensors),
+			predicate);
+
+		if (!*el) return;
+
+		_sensors.erase(el);
+	}
+
+
+	template <typename SensorType>
+	SensorType* Channel<SensorType>::getNext()
+	{
+		static byte i = -1;
+		return _sensors[++i %= _sensors.size()].get();
+	}
+
+
+	template <typename SensorType>
+	void Channel<SensorType>::initAll() const
+	{
+		for (auto& sensor : _sensors)
+			sensor->init();
+	}
 
 }}
 

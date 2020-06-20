@@ -10,7 +10,7 @@ namespace sensors {
 	class I2CSensor : public Sensor
 	{
 	public:
-		virtual SensorData read() = 0;
+		virtual SensorData read() const = 0;
 
 	protected:
 		I2CSensor(

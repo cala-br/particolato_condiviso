@@ -4,20 +4,27 @@
 #include <common.hpp>
 #include <Wire.h>
 #include <array>
+#include <vector>
 
 
 namespace cc {
 namespace i2c {
 
+
+	void beginReadTransaction(
+		word slaveAddress,
+		byte registerAddress,
+		byte bytes
+	);
+
+
 	template <typename Symbol>
 	Symbol read();
-
 
 	template <>
 	inline byte read<byte>() {
 		return Wire.read();
 	}
-
 
 	template <>
 	inline word read<word>() {
@@ -28,18 +35,34 @@ namespace i2c {
 
 
 	template <typename Symbol, byte Size>
-	void readMultiple(std::array<Symbol, Size>& result)
+	std::array<Symbol, Size> readMultiple()
+	{
+		std::array<Symbol, Size> res;
+
+		for (byte i = 0; i < Size; i++)
+			res[i] = read<Symbol>();
+	
+		return res;
+	}
+
+	template <typename Symbol, byte Size>
+	void readMultiple(std::vector<Symbol>& out)
 	{
 		for (byte i = 0; i < Size; i++)
-			result[i] = read<Symbol>();
+			out.push_back( read<Symbol>() );
 	}
 
 
-	void beginTransaction(
-		word slaveAddress,
-		byte registerAddress,
-		byte bytes
-	);
+	template <byte Size>
+	void write(word slaveAddress, std::array<byte, Size> data) 
+	{
+		Wire.beginTransmission(slaveAddress);
+
+		for (byte b : data)
+			Wire.write(b);
+
+		Wire.endTransmission(true);
+	};
 
 }}
 

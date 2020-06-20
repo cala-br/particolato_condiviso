@@ -4,7 +4,7 @@
 namespace cc {
 namespace i2c {
 
-	void beginTransaction(
+	void beginReadTransaction(
 		word slaveAddress,
 		byte registerAddress,
 		byte bytes
