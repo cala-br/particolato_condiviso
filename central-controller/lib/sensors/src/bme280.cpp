@@ -9,7 +9,7 @@ namespace sensors {
 
 	Bme280::Bme280() 
 		: 
-		I2CSensor(60, "bme280")
+		I2CSensor(0x76, "bme280")
 	{}
 
 
