@@ -1,9 +1,6 @@
 #ifndef SENSORS_
 #define SENSORS_
 
-#include <sensors_manager.hpp>
-#include <sensors_reader.hpp>
-#include <mock_sensor.hpp>
 #include <bme280.hpp>
 
 #endif // !SENSORS_
