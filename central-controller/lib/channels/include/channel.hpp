@@ -21,23 +21,11 @@ namespace channels {
 		void initAll() const;
 
 	protected:
-		Channel(
-			const int delay, 
-			const int timeout, 
-			std::vector<std::unique_ptr<SensorType>> sensors
-		);
-
-		Channel(
-			const int delay,
-			const int timeout
-		) : Channel(delay, timeout, {}) {}
-
+		explicit Channel(std::vector<std::unique_ptr<SensorType>> sensors);
+		explicit Channel() 
+			: Channel(std::vector<std::unique_ptr<SensorType>>{}) {}
 
 		SensorType* getNext();
-
-
-		int _delay;
-		int _timeout;
 
 		std::vector<
 			std::unique_ptr<SensorType>
@@ -51,12 +39,8 @@ namespace channels {
 
 	template <typename SensorType>
 	Channel<SensorType>::Channel(
-		const int delay,
-		const int timeout,
 		std::vector<std::unique_ptr<SensorType>> sensors
 	) :
-		_delay(delay),
-		_timeout(timeout),
 		_sensors(move(sensors))
 	{
 		static_assert(

@@ -12,19 +12,12 @@ namespace channels {
 	{
 	public:
 		I2CChannel(
-			const int delay,
-			const int timeout,
 			std::vector<std::unique_ptr<sensors::I2CSensor>> sensors
 		) :
-			Channel(delay, timeout, move(sensors))
+			Channel(move(sensors))
 		{}
 
-		I2CChannel(
-			const int delay,
-			const int timeout
-		) : 
-			Channel(delay, timeout, {})
-		{}
+		I2CChannel() : Channel(){}
 
 		string readNext();
 	};

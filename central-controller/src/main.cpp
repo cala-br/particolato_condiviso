@@ -17,7 +17,7 @@ constexpr char WEATHER_DATA_TOPIC[] =
     "calabretti/particolato/weather_data";
 
 
-I2CChannel i2c(1000, 10);
+I2CChannel i2c;
 AsyncMqttClient mqttClient;
 
 
