@@ -31,10 +31,17 @@ namespace sensors {
 		int32_t  t_fine;
 	};
 
+	enum class Bme280ID : byte
+	{
+		ZERO_x76 = 0x76,
+		ZERO_x77 = 0x77,
+	};
+
+
 	class Bme280 : public I2CSensor
 	{
 	public:
-		Bme280();
+		Bme280(const Bme280ID id);
 
 		void init();
 		byte syncId() const;

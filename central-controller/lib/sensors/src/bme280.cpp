@@ -7,9 +7,9 @@ using namespace std;
 namespace cc {
 namespace sensors {
 
-	Bme280::Bme280() 
-		: 
-		I2CSensor(0x76, "bme280")
+	Bme280::Bme280(const Bme280ID id) 
+		: I2CSensor(
+			static_cast<byte>(id), "bme280")
 	{}
 
 
@@ -26,7 +26,6 @@ namespace sensors {
 			Bme280Register::CTRL_MEAS,
 			0x27,	// Pressure and temperature data acquisition options
 		});
-
 		this->_calibrationParams = readCalibrationParams();
 	}
 
