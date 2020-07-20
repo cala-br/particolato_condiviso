@@ -10,7 +10,7 @@ namespace cc {
 namespace channels {
 
 	template <typename SensorType>
-	class Channel 
+	class Channel
 	{
 	public:
 		virtual string readNext() = 0;

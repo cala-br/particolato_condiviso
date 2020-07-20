@@ -11,11 +11,8 @@ namespace channels {
 	class I2CChannel : public Channel<sensors::I2CSensor>
 	{
 	public:
-		I2CChannel(
-			std::vector<std::unique_ptr<sensors::I2CSensor>> sensors
-		) :
-			Channel(move(sensors))
-		{}
+		I2CChannel(std::vector<std::unique_ptr<sensors::I2CSensor>> sensors) 
+			: Channel(move(sensors)){}
 
 		I2CChannel() : Channel(){}
 

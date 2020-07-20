@@ -53,10 +53,29 @@ namespace i2c {
 	}
 
 
+	inline void write(word slaveAddress, word registerAddress)
+	{
+		Wire.beginTransmission(slaveAddress);
+		Wire.write(registerAddress);
+		Wire.endTransmission(true);
+	}
+
 	template <byte Size>
 	void write(word slaveAddress, std::array<byte, Size> data) 
 	{
 		Wire.beginTransmission(slaveAddress);
+
+		for (byte b : data)
+			Wire.write(b);
+
+		Wire.endTransmission(true);
+	};
+
+	template <byte Size>
+	void write(word slaveAddress, word registerAddress, std::array<byte, Size> data) 
+	{
+		Wire.beginTransmission(slaveAddress);
+		Wire.write(registerAddress);
 
 		for (byte b : data)
 			Wire.write(b);
