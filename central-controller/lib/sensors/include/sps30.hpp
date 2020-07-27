@@ -75,6 +75,17 @@ namespace sensors {
         static bool validateChecksum(const std::array<byte, 3>& data);
     };
 
+
+#define SPS30_HANDLE_ERROR(err) \
+    do {                        \
+        if (err != Sps30ReadError::NONE) {   \
+            return {                         \
+                .result = {},                \
+                .error  = err,               \
+            };                               \
+        }                                    \
+    } while (false) 
+
 }}
 
 

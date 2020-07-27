@@ -56,12 +56,7 @@ namespace sensors {
         const auto res = 
             readDefault(cmd::READ_DATA_READY_FLAG);
 
-        if (res.error != readerr::NONE) {
-            return {
-                .result = false, 
-                .error  = res.error 
-            };
-        }
+        SPS30_HANDLE_ERROR(res.error);
 
         constexpr byte NEW_DATA_FLAG = 0x01;
         const byte dflag = res.result[1];
